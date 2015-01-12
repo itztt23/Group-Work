@@ -1,0 +1,8 @@
+MAXSUBARRAY_ENUMERATION(A[1..n]):
+	best <- 0 //Can assume 0 is worst case because problem states that the list contains at least one pisitive integer.
+	for i <- 1 to n
+	    for j <- i to n
+	    	cur = SUM(A[i..j])
+	    	if cur > best
+	       	   best <- cur
+	return best
