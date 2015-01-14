@@ -1,7 +1,7 @@
 MAXSUBARRAY_ENUMERATION(A[1..n]):
-	best <- 0 //Can assume 0 is worst case because problem states that the list contains at least one pisitive integer.
-	for i <- 1 to n
-	    for j <- i to n
+	best <- 0 //Can assume 0 is worst case because problem states that the list contains at least one positive integer.
+	for j <- 0 through n //for every n
+	    for i <- 0 through j //for everything from 0 through the current loop index (j)
 	    	cur = SUM(A[i..j])
 	    	if cur > best
 	       	   best <- cur
