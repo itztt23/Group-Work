@@ -6,3 +6,19 @@ MAXSUBARRAY_ENUMERATION(A[1..n]):
 	    	if cur > best
 	       	   best <- cur
 	return best
+
+MAXSUBARRAY_BETTER_ENUMERATION(A[1..n]):
+    best <- 0
+    for i = 1..n
+        sum = 0
+        for j = i..n
+            sum = sum + A[j]
+            if sum > best
+                best <- sum
+    return best
+
+MAXSUBARRAY_RECURSIVE(A[1..n]):
+    return max(MAXSUBARRAY_RECURSIVE(a[1..(n-1)]), MAXSUFFIX(a[1..n]))
+
+MAXSUFFIX(A[1..n]):
+    return max(0, MAXSUFFIX(A[1..(n-1)] + A[n])
