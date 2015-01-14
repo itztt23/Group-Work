@@ -3,16 +3,21 @@ def max_subarray_enumeration(A):
     list = []
     for j in range(len(A)): #for every element in A
         for i in range(j): #for every element from 0 to the current index
-            subarray = A[i:j+1]
+            subarray = A[i:j+1] #the sub-array being summed
             cur = sum(subarray)
             if cur > best:
                 best = cur
-                list = subarray
+                list = subarray #keeps track of the best subarray for debugging
                 # print "New best: "
                 # print best
                 # print list
     return best
 
+def max_subarray_better(A):
+    return
+
+def max_subarray_dynamic(A):
+    return
 
 def main():
     testOne = [22, -27, 38, -34, 49, 40, 13, -44, -13, 28, 46, 7, -26, 42, 29, 0, -6, 35, 23, -37, 10, 12, -2, 18, -12, -49, -10, 37, -5, 17, 6, -11, -22, -17, -50, -40, 44, 14, -41, 19, -15, 45, -23, 48, -1, -39, -46, 15, 3, -32, -29, -48, -19, 27, -33, -8, 11, 21, -43, 24, 5, 34, -36, -9, 16, -31, -7, -24, -47, -14, -16, -18, 39, -30, 33, -45, -38, 41, -3, 4, -25, 20, -35, 32, 26, 47, 2, -4, 8, 9, 31, -28, 36, 1, -21, 30, 43, 25, -20, -42]
@@ -29,10 +34,35 @@ def main():
     tests = [testOne, testTwo, testThree, testFour, testFive, testSix, testSeven, testEight, testNine, testTen]
     answers = [239, 322, 305, 271, 281, 215, 207, 309, 195, 390]
 
+    enumTestFails = 0
+    betterEnumTestFails = 0
+    dynamicTestFails = 0
+
     for i in range(10):
-        if max_subarray_enumeration(tests[i]) == answers[i]:
-            print "pass"
-        else: print "fail"
+        if max_subarray_enumeration(tests[i]) != answers[i]:
+            enumTestFails += 1
+        if max_subarray_better(tests[i]) != answers[i]:
+            betterEnumTestFails += 1
+        if max_subarray_dynamic(tests[i]) != answers[i]:
+            dynamicTestFails += 1
+
+    if(enumTestFails == 0):
+        print "enumeration tests:\t\t\t passed"
+    else:
+        print "enumeration tests:\t\t\t failed"
+
+    if(betterEnumTestFails == 0):
+        print "better enumeration tests:\t passed"
+    else:
+        print "better enumeration tests:\t failed"
+
+    if(dynamicTestFails == 0):
+        print "dynamic tests:\t\t\t\t passed"
+    else:
+        print "dynamic tests:\t\t\t\t failed"
+
+
+
 
 
 if __name__ == "__main__":
