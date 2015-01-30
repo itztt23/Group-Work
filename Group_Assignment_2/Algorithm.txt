@@ -1,0 +1,126 @@
+ALGORITHM_ONE(n, m, t, M[1..m], T[1..t])
+    leastOpenedLockers <- oo
+    unopened <- 0
+    keys[1] <- 0
+
+    while k != 1
+        unopened <- 0
+        if keys[k] < m
+            keys[k + 1] <- keys[k] + 1
+            k++
+        else
+            keys[k-1]++
+            k--
+
+        if(T[1] < M[1])
+            unopened += T[1] - 1                //All the empty lockers before the first tennis ball
+        if(T[t] > M[m])
+            unopened += n - T[t]                //All the empty lockers after the last tennis ball
+
+        ballCounter <- 0
+        while(T[ballCounter] < keys[1])
+            ballCounter++
+
+        z <- 1
+        for z up to k-1                          //for every key pair in keys
+            bestE <- 0
+            i <- keys[z] + 1
+            for i up to keys[z+1] - 1            //for every locker up to the one with the key
+                j <- i
+                if(i = T[ballCounter])
+                    i++
+                    ballCounter++
+                    continue
+                else
+                    while(j+1 != T[ballCounter])
+                        j++
+                    if ((j-i)+1) > bestE
+                        bestE <- ((j-i)+1)
+                    i = ballCounter             //Moves to the next set of empty lockers
+            unopened += bestE
+        if(total - unopened < leastOpenedLockers)
+            leastOpenedLockers = total - unopened
+    return leastOpenedLockers
+
+
+ALGORITHM_TWO_RECURSIVE(n, m, t, M[1..m], T[1..t])
+    part = d(n)
+    if T[t] > K[k]
+        return part + (T[t] - K[k])
+    else
+        return part
+
+ALGORITHM_TWO_DYNAMIC(n, m, t, M[1..m], T[1..t])
+    D[1..n]
+    if M[0] < T[0]
+        D[1] =  0
+    else
+        D[1] =  M[0] - T[0]
+
+    i <- 1
+    j <- 1
+    part <- D[1]
+    for i up through m
+        best <- oo
+        for j up to i
+            if D[j] + LEAST_OPENED(M[i], M[j]) < best
+                best <- D[j] + LEAST_OPENED(M[i], M[j]
+        part += best
+
+    if T[t] > K[k]
+        return part + (T[t] - K[k])
+    else
+        return part
+
+
+
+d(i)
+    //BASE CASE
+    if M[0] < T[0]:
+        return 0
+    else:
+        return M[0] - T[0]
+
+    return min{d(j) + LEAST_OPENED(M[i], M[j])} for all j < i
+
+LEAST_OPENED(mi, mj)
+    best <- 0
+    for i in [mi..mj]
+        j <- i
+        if i in T
+            continue
+        else
+            while (j+1) not in T
+                j++
+            if (j-i) + 1 > best
+                best <- (j-i) + 1
+    return (mj - mi) - best
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

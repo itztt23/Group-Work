@@ -3,9 +3,13 @@ __author__ = 'zsherman'
 import Lockers
 
 def main():
-    l = Lockers.Locker()
-    l.loadFromFile('samples.txt', 7)
-    l.prettyPrint()
+    for i in range(7):
+        l = Lockers.Locker()
+        l.loadFromFile('samples2.txt', i)
+        l.prettyPrint()
+        print l.algorithm_two_dynamic()
+        print
+
 
 
 if __name__ == '__main__':
