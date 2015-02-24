@@ -1,0 +1,9 @@
+DIVIDEANDCONQUER(A[1..a])
+    if a == 1:
+        return A[0]
+    else:
+        return min{
+                    DIVIDEANDCONQUER(A[1..a/2])
+                    DIVIDEANDCONQUER(A[a/2..a])
+                    SUFFIXPREFIX(A[1..a/2], A[a/2..a])
+                  }
