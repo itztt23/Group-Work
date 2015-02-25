@@ -16,7 +16,7 @@ def main():
 
     correct = 0
     for i in range(10):
-        answer = recursive(solution[i]._array, 0, len(solution[i]._array))
+        answer = recursive(solution[i]._array, 0, len(solution[i]._array)-1)
         if int(answer[0]) == int(solution[i]._solution) and int(answer[1]) == int(solution[i]._startIndex) and int(answer[2]) == int(solution[i]._endIndex):
             print("SOLUTIONS MATCHED")
             print("-------------------------------------------------------------------")
