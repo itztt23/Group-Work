@@ -38,6 +38,21 @@ class SolutionSet:
             self._subset = self._array[self._startIndex:self._endIndex+1]
             break
 
+    def load_from_no_solution_file(self, index):
+        with open("test_cases_without_solutions.txt") as f:
+            content = f.readlines()
+        lineIndex = 0
+        for line in content:
+            if lineIndex != index:
+                lineIndex += 1
+                continue
+            line = line.replace("[", "")
+            line = line.replace("]","")
+            line = line.split(",")
+            for num in line:
+                self._array.append(int(num))
+            break
+
     def savetofile(self):
         with open("answers.txt", 'w') as f:
             str = "%u %u %u" % (self._solution, self._startIndex, self._endIndex)

@@ -6,38 +6,43 @@ import sys
 # import antigravity
 
 def main():
+    sys.setrecursionlimit(10000)
     solution = []
-    for i in range(0,10):
+    for i in range(0,20):
         solution.append(SS.SolutionSet())
-        solution[i].loadfromfile(i)
+        solution[i].load_from_no_solution_file(i)
         # solution[i].prettyprint()
+
+    for i in [2]:
+       print(solution[i]._array)
+       print(recursive(solution[i]._array, 0, len(solution[i]._array)-1))
 
     a = []
 
-    correct = 0
-    for i in range(10):
-        answer = recursive(solution[i]._array, 0, len(solution[i]._array)-1)
-        if int(answer[0]) == int(solution[i]._solution) and int(answer[1]) == int(solution[i]._startIndex) and int(answer[2]) == int(solution[i]._endIndex):
-            print("SOLUTIONS MATCHED")
-            print("-------------------------------------------------------------------")
-            correct += 1
-            solution[i].prettyprint()
-            print("\nOUR SOLUTION")
-            print("Solution: ", answer[0])
-            print("Start Index: ", answer[1])
-            print("End Index: ", answer[2])
-            print("Subset: ", solution[i]._array[answer[1]:answer[2]+1])
-            print("-------------------------------------------------------------------")
-        else:
-            print("SOLUTIONS DID NOT MATCH: ")
-            solution[i].prettyprint()
-            print("\nOUR SOLUTION")
-            print("Solution: ", answer[0])
-            print("Start Index: ", answer[1])
-            print("End Index: ", answer[2])
-            print("Subset: ", solution[i]._array[answer[1]:answer[2]+1])
-            print("-------------------------------------------------------------------")
-    print("%u/10 SOLUTIONS CORRECT" % correct)
+    # correct = 0
+    # for i in range(10):
+    #     answer = recursive(solution[i]._array, 0, len(solution[i]._array)-1)
+    #     if int(answer[0]) == int(solution[i]._solution) and int(answer[1]) == int(solution[i]._startIndex) and int(answer[2]) == int(solution[i]._endIndex):
+    #         print("SOLUTIONS MATCHED")
+    #         print("-------------------------------------------------------------------")
+    #         correct += 1
+    #         solution[i].prettyprint()
+    #         print("\nOUR SOLUTION")
+    #         print("Solution: ", answer[0])
+    #         print("Start Index: ", answer[1])
+    #         print("End Index: ", answer[2])
+    #         print("Subset: ", solution[i]._array[answer[1]:answer[2]+1])
+    #         print("-------------------------------------------------------------------")
+    #     else:
+    #         print("SOLUTIONS DID NOT MATCH: ")
+    #         solution[i].prettyprint()
+    #         print("\nOUR SOLUTION")
+    #         print("Solution: ", answer[0])
+    #         print("Start Index: ", answer[1])
+    #         print("End Index: ", answer[2])
+    #         print("Subset: ", solution[i]._array[answer[1]:answer[2]+1])
+    #         print("-------------------------------------------------------------------")
+    # print("%u/10 SOLUTIONS CORRECT" % correct)
 
 #Takes three tuples in the form (value, index, index)
 #Returns the tuple with the smallest absolute value
