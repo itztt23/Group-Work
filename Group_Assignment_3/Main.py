@@ -2,23 +2,27 @@ __author__ = 'Zachary'
 
 import Group_Assignment_3.SolutionSet as SS
 import math
-import sys
+import time
 # import antigravity
 
 def main():
-    sys.setrecursionlimit(10000)
+
     solution = []
     for i in range(0,20):
         solution.append(SS.SolutionSet())
         solution[i].load_from_no_solution_file(i)
+        # solution[i].loadfromfile(i)
         # solution[i].prettyprint()
 
-    for i in [2]:
-       print(solution[i]._array)
-       print(recursive(solution[i]._array, 0, len(solution[i]._array)-1))
+    for i in range(20):
+       # print(solution[i]._array)
+       start = time.clock()
+       answer =  recursive(solution[i]._array, 0, len(solution[i]._array)-1)
+       end = time.clock() - start
+       print(len(solution[i]._array), end)
 
-    a = []
-
+    # a = []
+    #
     # correct = 0
     # for i in range(10):
     #     answer = recursive(solution[i]._array, 0, len(solution[i]._array)-1)
@@ -108,7 +112,7 @@ def findClosestSumToZero(A, low, high, k):
 
 def recursive(A, start, end):
     mid = int((start+end)/2)
-    if start is mid or end is mid:
+    if start == mid or end == mid:
         return (A[start], start, start)
     else:
         firstHalf = A[start:mid]
