@@ -11,7 +11,8 @@ class SolutionSet:
         self._subset = []
 
     def prettyprint(self):
-        print(self._array)
+        print("GIVEN SOLUTION")
+        #print(self._array)
         print("Solution: ", self._solution)
         print("Start Index: ", self._startIndex)
         print("End Index: ", self._endIndex)

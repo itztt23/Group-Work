@@ -1,9 +1,24 @@
-DIVIDEANDCONQUER(A[1..a])
-    if a == 1:
-        return A[0]
+RECURSIVE(A[1..a], start, end):
+    if start - end is 0:
+        return (A[start], start, end)
     else:
-        return min{
-                    DIVIDEANDCONQUER(A[1..a/2])
-                    DIVIDEANDCONQUER(A[a/2..a])
-                    SUFFIXPREFIX(A[1..a/2], A[a/2..a])
-                  }
+        mid = floor((start+end)/2)
+        firstHalf = A[start:mid]
+        secondHalf = A[mid:end]
+
+        prefix = make_prefix(firstHalf)
+        suffix = make_suffix(secondHalf)
+
+        prefixS = sorted(prefix)
+        suffixS = sorted(suffix)
+
+        methodTwoReturn = methodTwo(prefix, suffix)         #(value, value in prefix, value in suffix)
+        prefixIndex = prefix.find(methodTwoReturn[1])
+        suffixIndex = suffix.find(methodTwoReturn[2])
+
+        startIndex = mid - prefixIndex
+        endIndex = mid + suffixIndex
+
+        return(min_abs(RECURSIVE(A, start, mid), RECURSIVE(A, mid, end), methodTwo(prefix, suffix))
+
+

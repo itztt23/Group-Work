@@ -13,7 +13,7 @@ def methodTwo(prefix, suffix):
             prefixIndex = prefix.index(value)
             suffixIndex = suffix.index(current)
             bestValue = abs(current + value)
-    return(bestValue, prefixIndex, suffixIndex)
+    return(bestValue, prefix[prefixIndex], suffix[suffixIndex])
 
 #Requires A to be sorted
 def findClosestSumToZero(A, low, high, k):

@@ -12,7 +12,7 @@ def main():
         solution[i].loadfromfile(i)
         # solution[i].prettyprint()
 
-    # print(recursive([21355, 52281, -73725], 0, 3))
+    a = []
 
     correct = 0
     for i in range(10):
@@ -93,19 +93,19 @@ def findClosestSumToZero(A, low, high, k):
         return A[high]
     else:
         mid = int(math.floor((high + low)/2))
-        if A[mid] < find:
+        if A[mid] == find:
+            return A[mid]
+        elif A[mid] < find:
             return findClosestSumToZero(A, mid, high, k)
         elif A[mid] > find:
             return findClosestSumToZero(A, low, mid, k)
-        elif A[mid] == find:
-            return A[mid]
+
 
 def recursive(A, start, end):
-    if start is end:
-        return (A[start], start, end)
+    mid = int((start+end)/2)
+    if start is mid or end is mid:
+        return (A[start], start, start)
     else:
-
-        mid = int((start+end)/2)
         firstHalf = A[start:mid]
         secondHalf = A[mid:end]
 
@@ -124,7 +124,7 @@ def recursive(A, start, end):
             endIndex = mid + suffixIndex
             methodTwoReturn = (methodTwoReturn[0], startIndex, endIndex)
 
-        return min_abs_value(recursive(A, start, mid), recursive(A, mid, end-1), methodTwoReturn)
+        return min_abs_value(recursive(A, start, mid), recursive(A, mid, end), methodTwoReturn)
 
 
 if __name__ == "__main__":
