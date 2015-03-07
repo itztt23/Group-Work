@@ -5,20 +5,28 @@ import csv
 class WeatherData:
     def __init__(self):
         self._data = []
+        self._pairs = []
         self._count = 0
 
     def loadFromFile(self, filename):
-        with open(filename, 'rb') as csvfile:
+        with open(filename) as csvfile:
             reader = csv.reader(csvfile, delimiter=';')
             for row in reader:
                 self._count += 1
                 self._data.append(row)
+                try:
+                    self._pairs.append([float(row[-2]), int(row[-1])])
+                except ValueError:
+                    print("Caught value error: " + row[-2] + row[-1])
+
         #removes the label entry
         self._data.pop(0);
 
     def prettyPrint(self):
         for row in self._data:
             print(row)
+
+
 
 class enum:
     STATION = 0
